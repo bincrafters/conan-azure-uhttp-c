@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/bincrafters/conan-azure-uhttp-c.svg?branch=stable%2F1.0.46)](https://travis-ci.org/bincrafters/conan-azure-uhttp-c)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## This repository holds a conan recipe for Azure-uHTTP-C.
 
 [Conan.io](https://conan.io) package for [Azure-uHTTP-C](https://github.com/Azure/azure-uhttp-c) project
