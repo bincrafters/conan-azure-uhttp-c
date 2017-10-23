@@ -1,25 +1,50 @@
-from conans import ConanFile, CMake
+import os
+from conans import ConanFile, CMake, tools
 
 
 class AzureuhttpcConan(ConanFile):
     name = "Azure-uHTTP-C"
     version = "1.0.46"
-    license = "<Put the package license here>"
-    url = "<Package recipe repository url here, for issues about the package>"
-    description = "<Description of Azureuhttpc here>"
+    license = "https://github.com/Azure/azure-uhttp-c/blob/master/LICENSE"
+    url = "https://github.com/bincrafters/conan-azure-uhttp-c"
+    description = "The Azure HTTP Library written in C"
+    author = "Bincrafters <https://bincrafters.github.io>"
     settings = "os", "compiler", "build_type", "arch"
+    requires = "Azure-C-Shared-Utility/1.0.43@bincrafters/stable"
     options = {"shared": [True, False]}
     default_options = "shared=False"
     generators = "cmake"
-    exports_sources = "src/*"
+    exports = "LICENSE"
+    release_date = "2017-10-20"
+    release_dir = "%s-%s" % (name.lower(), release_date)
+
+    def source(self):
+        tools.get("https://github.com/Azure/azure-uhttp-c/archive/%s.tar.gz" % self.release_date)
+
+    def _insert_magic_lines(self):
+        conan_magic_lines='''project(uhttp)
+        include(../conanbuildinfo.cmake)
+        conan_basic_setup()
+        '''
+        tools.replace_in_file("CMakeLists.txt", "project(uhttp)", conan_magic_lines)
+
+    def _remove_internal_denpendencies(self):
+        tools.replace_in_file("CMakeLists.txt", "include(deps/c-utility/configs/azure_iot_build_rules.cmake)", "")
+        tools.replace_in_file("CMakeLists.txt", "add_subdirectory(./deps/c-utility)", "")
+        tools.replace_in_file("CMakeLists.txt", "set_platform_files(${CMAKE_CURRENT_LIST_DIR}/deps/c-utility)", "")
 
     def build(self):
-        cmake = CMake(self)
-        self.run('cmake %s/src %s' % (self.source_folder, cmake.command_line))
-        self.run("cmake --build . %s" % cmake.build_config)
+        with tools.chdir(self.release_dir):
+            self._insert_magic_lines()
+            self._remove_internal_denpendencies()
+            cmake = CMake(self)
+            cmake.definitions["skip_samples"] = True
+            cmake.configure(source_dir=os.getcwd())
+            cmake.build()
 
     def package(self):
-        self.copy("*.h", dst="include", src="src")
+        self.copy("LICENSE", dst=".", src=".")
+        self.copy("*.h", dst="include", src=os.path.join(self.release_dir, "inc"))
         self.copy("*.lib", dst="lib", keep_path=False)
         self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.dylib*", dst="lib", keep_path=False)
@@ -27,4 +52,4 @@ class AzureuhttpcConan(ConanFile):
         self.copy("*.a", dst="lib", keep_path=False)
 
     def package_info(self):
-        self.cpp_info.libs = ["hello"]
+        self.cpp_info.libs = tools.collect_libs(self)

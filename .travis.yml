@@ -2,10 +2,11 @@
 env:
    global:
      - CONAN_REFERENCE: "Azure-uHTTP-C/1.0.46"
-     - CONAN_USERNAME: "user"
-     - CONAN_LOGIN_USERNAME: "user"
-     - CONAN_CHANNEL: "channel"
+     - CONAN_USERNAME: "bincrafters"
+     - CONAN_CHANNEL: "testing"
      - CONAN_UPLOAD: "https://api.bintray.com/conan/bincrafters/conan-public"
+     - CONAN_UPLOAD_ONLY_WHEN_STABLE: "TRUE"
+     - CONAN_STABLE_BRANCH_PATTERN: "stable/*"
 
 linux: &linux
    os: linux
