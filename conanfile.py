@@ -33,14 +33,17 @@ class AzureuhttpcConan(ConanFile):
         tools.replace_in_file("CMakeLists.txt", "add_subdirectory(./deps/c-utility)", "")
         tools.replace_in_file("CMakeLists.txt", "set_platform_files(${CMAKE_CURRENT_LIST_DIR}/deps/c-utility)", "")
 
+    def _build(self):
+        cmake = CMake(self, parallel=False)
+        cmake.definitions["skip_samples"] = True
+        cmake.configure(source_dir=os.getcwd())
+        cmake.build()
+
     def build(self):
         with tools.chdir(self.release_dir):
             self._insert_magic_lines()
             self._remove_internal_denpendencies()
-            cmake = CMake(self)
-            cmake.definitions["skip_samples"] = True
-            cmake.configure(source_dir=os.getcwd())
-            cmake.build()
+            self._build()
 
     def package(self):
         self.copy("LICENSE", dst=".", src=".")
