@@ -1,5 +1,6 @@
-[![Build Status](https://travis-ci.org/bincrafters/conan-azure-uhttp-c.svg?branch=stable%2F1.0.46)](https://travis-ci.org/bincrafters/conan-azure-uhttp-c)
-[![Build status](https://ci.appveyor.com/api/projects/status/ftmq7dao3m65t4y7?svg=true)](https://ci.appveyor.com/project/BinCrafters/conan-azure-uhttp-c)
+[![Travis Status](https://travis-ci.org/bincrafters/conan-azure-uhttp-c.svg?branch=stable%2F1.0.46)](https://travis-ci.org/bincrafters/conan-azure-uhttp-c)
+[![Appveyor Status status](https://ci.appveyor.com/api/projects/status/ftmq7dao3m65t4y7/branch/stable/1.0.46?svg=true)](https://ci.appveyor.com/project/BinCrafters/conan-azure-uhttp-c/branch/stable/1.0.46)
+[![Download](https://api.bintray.com/packages/bincrafters/public-conan/Azure-uHTTP-C%3Abincrafters/images/download.svg?version=1.0.46%3Astable) ](https://bintray.com/bincrafters/public-conan/Azure-uHTTP-C%3Abincrafters/1.0.46%3Astable/link)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## This repository holds a conan recipe for Azure-uHTTP-C.
