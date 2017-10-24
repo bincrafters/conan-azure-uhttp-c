@@ -8,8 +8,3 @@ file(GLOB SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*.c)
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
 target_link_libraries(${CMAKE_PROJECT_NAME} ${CONAN_LIBS})
-
-enable_testing()
-add_test(NAME test-package
-         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-         COMMAND ${CMAKE_PROJECT_NAME})
