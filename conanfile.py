@@ -10,9 +10,9 @@ class AzureuhttpcConan(ConanFile):
     description = "The Azure HTTP Library written in C"
     author = "Bincrafters <https://bincrafters.github.io>"
     settings = "os", "compiler", "build_type", "arch"
-    requires = "Azure-C-Shared-Utility/1.0.43@bincrafters/stable"
+    requires = "Azure-C-Shared-Utility/1.0.46@bincrafters/stable"
     options = {"shared": [True, False]}
-    default_options = "shared=False"
+    default_options = "shared=True"
     generators = "cmake"
     exports = "LICENSE"
     release_date = "2017-10-20"
