@@ -9,7 +9,7 @@ environment:
     CONAN_USERNAME: "bincrafters"
     CONAN_CHANNEL: "testing"
     VS150COMNTOOLS: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Common7\\Tools\\"
-    CONAN_UPLOAD: "https://api.bintray.com/conan/bincrafters/conan-public"
+    CONAN_UPLOAD: "https://api.bintray.com/conan/bincrafters/public-conan"
     CONAN_UPLOAD_ONLY_WHEN_STABLE: "TRUE"
     CONAN_STABLE_BRANCH_PATTERN: "stable/*"
     CONAN_ARCHS: "x86_64"
