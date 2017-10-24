@@ -21,6 +21,9 @@ class AzureuhttpcConan(ConanFile):
     def source(self):
         tools.get("https://github.com/Azure/azure-uhttp-c/archive/%s.tar.gz" % self.release_date)
 
+    def configure(self):
+        self.options["Azure-C-Shared-Utility"].shared = self.options.shared
+
     def _insert_magic_lines(self):
         conan_magic_lines='''project(uhttp)
         include(../conanbuildinfo.cmake)
@@ -34,7 +37,7 @@ class AzureuhttpcConan(ConanFile):
         tools.replace_in_file("CMakeLists.txt", "set_platform_files(${CMAKE_CURRENT_LIST_DIR}/deps/c-utility)", "")
 
     def _build(self):
-        cmake = CMake(self, parallel=False)
+        cmake = CMake(self)
         cmake.definitions["skip_samples"] = True
         cmake.configure(source_dir=os.getcwd())
         cmake.build()
