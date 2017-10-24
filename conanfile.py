@@ -22,8 +22,6 @@ class AzureuhttpcConan(ConanFile):
         tools.get("https://github.com/Azure/azure-uhttp-c/archive/%s.tar.gz" % self.release_date)
 
     def configure(self):
-        if self.settings.os == "Windows":
-            self.options.shared = False
         self.options["Azure-C-Shared-Utility"].shared = self.options.shared
 
     def _insert_magic_lines(self):
@@ -41,6 +39,8 @@ class AzureuhttpcConan(ConanFile):
     def _build(self):
         cmake = CMake(self)
         cmake.definitions["skip_samples"] = True
+        if self.settings.os == "Windows" and self.options.shared:
+            cmake.definitions["CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS"] = True
         cmake.configure(source_dir=os.getcwd())
         cmake.build()
 
