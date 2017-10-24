@@ -7,6 +7,8 @@ env:
      - CONAN_UPLOAD: "https://api.bintray.com/conan/bincrafters/conan-public"
      - CONAN_UPLOAD_ONLY_WHEN_STABLE: "TRUE"
      - CONAN_STABLE_BRANCH_PATTERN: "stable/*"
+     - CONAN_ARCHS: "x86_64"
+     - CONAN_BUILD_TYPES: "Release"
 
 linux: &linux
    os: linux
