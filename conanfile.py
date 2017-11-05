@@ -21,6 +21,9 @@ class AzureuhttpcConan(ConanFile):
     def source(self):
         tools.get("https://github.com/Azure/azure-uhttp-c/archive/%s.tar.gz" % self.release_date)
 
+    def configure(self):
+        del self.settings.compiler.libcxx
+
     def _insert_magic_lines(self):
         conan_magic_lines='''project(uhttp)
         include(../conanbuildinfo.cmake)
