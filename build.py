@@ -38,7 +38,6 @@ if __name__ == "__main__":
     upload = "https://api.bintray.com/conan/{0}/public-conan".format(username)
 
     builder = ConanMultiPackager(username=username, channel=channel, reference=reference, upload=upload,
-                                 archs=["x86_64"], build_types=["Release"], upload_only_when_stable=True,
-                                 stable_branch_pattern="stable/*")
+                                 upload_only_when_stable=True, stable_branch_pattern="stable/*")
     builder.add_common_builds(shared_option_name="Azure-uHTTP-C:shared")
     builder.run()
