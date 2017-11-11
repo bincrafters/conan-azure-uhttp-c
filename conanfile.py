@@ -12,7 +12,7 @@ class AzureuhttpcConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     requires = "Azure-C-Shared-Utility/1.0.46@bincrafters/stable"
     options = {"shared": [True, False]}
-    default_options = "shared=True"
+    default_options = "shared=False"
     generators = "cmake"
     exports = "LICENSE"
     release_date = "2017-10-20"
